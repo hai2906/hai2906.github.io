@@ -3,81 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lịch Vạn Niên 2025 - Tháng 3</title>
+    <title>Lịch Vạn Niên 2025</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <h1>Lịch Vạn Niên 2025 - Tháng 3</h1>
-        <p>Chi tiết ngày lễ và sự kiện tại Việt Nam</p>
-    </header>
-
-    <div class="calendar-container">
-        <table class="calendar">
-            <thead>
-                <tr>
-                    <th>Thứ 2</th>
-                    <th>Thứ 3</th>
-                    <th>Thứ 4</th>
-                    <th>Thứ 5</th>
-                    <th>Thứ 6</th>
-                    <th>Thứ 7</th>
-                    <th>Chủ Nhật</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td><span class="date">1<br>(2/2)</span></td>
-                    <td><span class="date">2<br>(3/2)</span></td>
-                    <td><span class="date">3<br>(4/2)</span></td>
-                    <td><span class="date">4<br>(5/2)</span></td>
-                    <td><span class="date">5<br>(6/2)</span></td>
-                </tr>
-                <tr>
-                    <td><span class="date">6<br>(7/2)</span></td>
-                    <td><span class="date">7<br>(8/2)</span></td>
-                    <td><span class="date">8<br>(9/2)</span></td>
-                    <td><span class="date">9<br>(10/2)</span></td>
-                    <td><span class="date">10<br>(11/2)</span></td>
-                    <td><span class="date">11<br>(12/2)</span></td>
-                    <td><span class="date">12<br>(13/2)</span></td>
-                </tr>
-                <tr>
-                    <td><span class="date">13<br>(14/2)</span></td>
-                    <td><span class="date">14<br>(15/2)</span></td>
-                    <td><span class="date">15<br>(16/2)</span></td>
-                    <td><span class="date">16<br>(17/2)</span></td>
-                    <td><span class="date">17<br>(18/2)</span></td>
-                    <td><span class="date">18<br>(19/2)</span></td>
-                    <td><span class="date">19<br>(20/2)</span></td>
-                </tr>
-                <tr>
-                    <td><span class="date">20<br>(21/2)</span></td>
-                    <td><span class="date">21<br>(22/2)</span></td>
-                    <td><span class="date">22<br>(23/2)</span></td>
-                    <td><span class="date">23<br>(24/2)</span></td>
-                    <td><span class="date">24<br>(25/2)</span></td>
-                    <td><span class="date">25<br>(26/2)</span></td>
-                    <td><span class="date">26<br>(27/2)</span></td>
-                </tr>
-                <tr>
-                    <td><span class="date">27<br>(28/2)</span></td>
-                    <td><span class="date">28<br>(29/2)</span></td>
-                    <td><span class="date holiday">29<br>(1/3)</span><br><span class="holiday-text">Tết Hàn Thực</span></td>
-                    <td><span class="date holiday">30<br>(2/3)</span><br><span class="holiday-text">Giỗ Tổ Hùng Vương</span></td>
-                    <td><span class="date holiday">31<br>(3/3)</span><br><span class="holiday-text">Giỗ Tổ Hùng Vương (nghỉ bù)</span></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="container">
+        <h1>Lịch Vạn Niên 2025</h1>
+        <div class="controls">
+            <button id="prevMonth">Tháng trước</button>
+            <span id="currentMonth"></span>
+            <button id="nextMonth">Tháng sau</button>
+        </div>
+        <div class="calendar" id="calendar"></div>
     </div>
-
-    <footer>
-        <p>© 2025 Lịch Vạn Niên Việt Nam. Mọi quyền được bảo lưu.</p>
-    </footer>
+    <script src="script.js"></script>
 </body>
 </html>

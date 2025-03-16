@@ -1,83 +1,86 @@
+const calendar = document.getElementById('calendar');
+const currentMonthLabel = document.getElementById('currentMonth');
+const prevMonthBtn = document.getElementById('prevMonth');
+const nextMonthBtn = document.getElementById('nextMonth');
+
+let currentDate = new Date(2025, 0, 1); // Bắt đầu từ tháng 1 năm 2025
+
+// Ngày lễ Việt Nam (mẫu, bạn có thể thêm đầy đủ)
 const holidays = {
-    "1-1": "Tết Dương Lịch",
-    "10-3": "Giỗ Tổ Hùng Vương",
-    "30-4": "Ngày Giải Phóng Miền Nam",
-    "1-5": "Ngày Quốc tế Lao Động",
-    "2-9": "Quốc Khánh Việt Nam",
-    "25-12": "Giáng Sinh",
-    "15-1": "Tết Nguyên Tiêu (Rằm tháng Giêng)",
-    "15-7": "Lễ Vu Lan (Rằm tháng Bảy)",
-    "15-8": "Tết Trung Thu"
+    '2025-01-01': 'Tết Dương Lịch',
+    '2025-02-17': 'Tết Nguyên Đán (Mùng 1 Tết)', // Ngày âm cần tính toán thêm
+    '2025-04-18': 'Giỗ Tổ Hùng Vương (10/3 Âm lịch)',
+    '2025-04-30': 'Ngày Thống Nhất',
+    '2025-09-02': 'Quốc Khánh'
 };
 
-const now = new Date();
-let currentMonth = now.getMonth();
-let currentYear = now.getFullYear();
+function renderCalendar() {
+    calendar.innerHTML = '';
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth();
 
-function renderCalendar(month, year) {
-    const monthYearText = document.getElementById("month-year");
-    const calendarBody = document.getElementById("calendar-body");
-    const holidayInfo = document.getElementById("holiday-info");
+    // Cập nhật tiêu đề tháng
+    currentMonthLabel.textContent = `Tháng ${month + 1} - ${year}`;
 
-    monthYearText.textContent = `Tháng ${month + 1}, ${year}`;
-    calendarBody.innerHTML = "";
+    // Tạo tiêu đề ngày trong tuần
+    const daysOfWeek = ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'];
+    daysOfWeek.forEach(day => {
+        const dayHeader = document.createElement('div');
+        dayHeader.classList.add('day-header');
+        dayHeader.textContent = day;
+        calendar.appendChild(dayHeader);
+    });
 
+    // Lấy ngày đầu tiên của tháng
     const firstDay = new Date(year, month, 1).getDay();
     const daysInMonth = new Date(year, month + 1, 0).getDate();
 
-    let date = 1;
-    for (let i = 0; i < 6; i++) {
-        let row = document.createElement("tr");
+    // Điền các ô trống trước ngày 1
+    for (let i = 0; i < firstDay; i++) {
+        const emptyDay = document.createElement('div');
+        calendar.appendChild(emptyDay);
+    }
 
-        for (let j = 0; j < 7; j++) {
-            let cell = document.createElement("td");
+    // Điền các ngày trong tháng
+    for (let day = 1; day <= daysInMonth; day++) {
+        const dayElement = document.createElement('div');
+        dayElement.classList.add('day');
 
-            if (i === 0 && j < firstDay) {
-                row.appendChild(cell);
-            } else if (date > daysInMonth) {
-                break;
-            } else {
-                cell.textContent = date;
+        const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+        dayElement.innerHTML = `${day}<br><span class="lunar">Âm lịch: ${getLunarDate(day, month, year)}</span>`;
 
-                let key = `${date}-${month + 1}`;
-                if (holidays[key]) {
-                    cell.classList.add("holiday");
-                    cell.title = holidays[key];
-                }
-
-                if (j === 0) {
-                    cell.classList.add("sunday");
-                }
-
-                cell.onclick = function () {
-                    holidayInfo.textContent = holidays[key] ? `🎉 ${holidays[key]}` : "Không có sự kiện đặc biệt.";
-                };
-
-                row.appendChild(cell);
-                date++;
-            }
+        // Kiểm tra ngày lễ
+        if (holidays[dateStr]) {
+            dayElement.classList.add('holiday');
+            dayElement.innerHTML += `<br>${holidays[dateStr]}`;
         }
 
-        calendarBody.appendChild(row);
+        // Kiểm tra ngày hiện tại
+        const today = new Date();
+        if (year === today.getFullYear() && month === today.getMonth() && day === today.getDate()) {
+            dayElement.classList.add('today');
+        }
+
+        calendar.appendChild(dayElement);
     }
 }
 
-document.getElementById("prev-month").addEventListener("click", function () {
-    currentMonth--;
-    if (currentMonth < 0) {
-        currentMonth = 11;
-        currentYear--;
-    }
-    renderCalendar(currentMonth, currentYear);
+// Hàm giả lập tính ngày âm (cần thư viện Lunar hoặc logic phức tạp hơn)
+function getLunarDate(day, month, year) {
+    // Đây là placeholder, bạn cần tích hợp thư viện như 'lunar-javascript'
+    return `${day}/${month + 1}`; // Thay bằng logic thật
+}
+
+// Điều hướng tháng
+prevMonthBtn.addEventListener('click', () => {
+    currentDate.setMonth(currentDate.getMonth() - 1);
+    renderCalendar();
 });
 
-document.getElementById("next-month").addEventListener("click", function () {
-    currentMonth++;
-    if (currentMonth > 11) {
-        currentMonth = 0;
-        currentYear++;
-    }
-    renderCalendar(currentMonth, currentYear);
+nextMonthBtn.addEventListener('click', () => {
+    currentDate.setMonth(currentDate.getMonth() + 1);
+    renderCalendar();
 });
 
-renderCalendar(currentMonth, currentYear);
+// Khởi tạo lịch
+renderCalendar();
