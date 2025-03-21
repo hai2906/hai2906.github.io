@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f4f8;
+    background-color: #d3d7d9; /* Xám bạc nhạt làm nền */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,15 +9,17 @@ body {
 }
 
 .container {
-    background-color: #fff;
+    background-color: #2b2f33; /* Xám thép đậm làm nền container */
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Bóng đậm hơn */
     text-align: center;
+    border: 1px solid #5a6268; /* Viền xám thép nhạt */
 }
 
 h1 {
-    color: #2c3e50;
+    color: #d4af37; /* Vàng đồng thau làm tiêu đề */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Bóng nhẹ */
 }
 
 .controls {
@@ -26,15 +28,16 @@ h1 {
 
 button {
     padding: 10px 20px;
-    background-color: #3498db;
-    color: white;
-    border: none;
+    background: linear-gradient(145deg, #5a6268, #434c52); /* Gradient ánh kim */
+    color: #e0e0e0; /* Chữ sáng */
+    border: 1px solid #434c52; /* Viền tối hơn */
     border-radius: 5px;
     cursor: pointer;
+    transition: background 0.3s ease; /* Hiệu ứng chuyển màu mượt */
 }
 
 button:hover {
-    background-color: #2980b9;
+    background: linear-gradient(145deg, #7a8288, #5a6268); /* Sáng hơn khi hover */
 }
 
 .calendar {
@@ -45,30 +48,38 @@ button:hover {
 }
 
 .day-header {
-    background-color: #e74c3c;
-    color: white;
+    background-color: #434c52; /* Xám thép tối cho tiêu đề ngày */
+    color: #e0e0e0; /* Chữ sáng */
     padding: 10px;
     font-weight: bold;
+    border-radius: 3px;
 }
 
 .day {
     padding: 20px;
-    background-color: #ecf0f1;
+    background-color: #3a4044; /* Xám kim loại nhạt cho ngày thường */
     border-radius: 5px;
     position: relative;
+    color: #e0e0e0; /* Chữ sáng */
+    transition: background-color 0.2s ease; /* Hiệu ứng hover */
 }
 
-.day.lunar {
-    color: #7f8c8d;
+.day:hover {
+    background-color: #4a5258; /* Sáng hơn khi hover */
+}
+
+.day .lunar {
+    color: #a0a5a8; /* Xám nhạt cho ngày âm lịch */
     font-size: 12px;
 }
 
 .holiday {
-    background-color: #f1c40f;
+    background-color: #b8860b; /* Vàng đồng đậm cho ngày lễ */
     color: #fff;
 }
 
 .today {
-    background-color: #2ecc71;
+    background-color: #4682b4; /* Xanh thép cho ngày hiện tại */
     color: white;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); /* Hiệu ứng lõm kim loại */
 }

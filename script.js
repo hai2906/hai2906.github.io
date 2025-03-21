@@ -5,7 +5,7 @@ const nextMonthBtn = document.getElementById('nextMonth');
 
 let currentDate = new Date(2025, 0, 1); // Bắt đầu từ tháng 1 năm 2025
 
-// Ngày lễ Việt Nam (mẫu, bạn có thể thêm đầy đủ)
+// Ngày lễ Việt Nam
 const holidays = {
     '2025-01-01': 'Tết Dương Lịch',
     '2025-02-17': 'Tết Nguyên Đán (Mùng 1 Tết)', // Ngày âm cần tính toán thêm
@@ -53,6 +53,7 @@ function renderCalendar() {
         if (holidays[dateStr]) {
             dayElement.classList.add('holiday');
             dayElement.innerHTML += `<br>${holidays[dateStr]}`;
+            dayElement.title = holidays[dateStr]; // Tooltip
         }
 
         // Kiểm tra ngày hiện tại
@@ -65,10 +66,10 @@ function renderCalendar() {
     }
 }
 
-// Hàm giả lập tính ngày âm (cần thư viện Lunar hoặc logic phức tạp hơn)
+// Hàm giả lập tính ngày âm (placeholder)
 function getLunarDate(day, month, year) {
-    // Đây là placeholder, bạn cần tích hợp thư viện như 'lunar-javascript'
-    return `${day}/${month + 1}`; // Thay bằng logic thật
+    // Thay bằng logic thật hoặc thư viện như 'lunar-javascript'
+    return `${day}/${month + 1}`;
 }
 
 // Điều hướng tháng
